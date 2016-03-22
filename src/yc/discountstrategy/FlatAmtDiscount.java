@@ -18,10 +18,13 @@ public class FlatAmtDiscount implements DiscountStrategy{
         setDiscountRate(discountRate);
     }
     
-
+    //QTY and UnitCost can't be less than zero
     @Override
-    public final double getDiscountAmt(int qty, double unitCost) {
-        //needs validation
+    public final double getDiscountAmt(int qty, double unitCost) throws IllegalArgumentException{
+        if (qty,unitCost < 0 ){
+        throw new IllegalArgumentException("Sorry qty must be greater than zero");
+    }
+        
         return discountRate;
         
      }
@@ -29,9 +32,12 @@ public class FlatAmtDiscount implements DiscountStrategy{
     public final double getDiscountRate() {
         return discountRate;
     }
-
-    public final void setDiscountRate(double discountRate) {
-        //needs validation
+    //Discount rate is not less than zero and greater than 5
+    public final void setDiscountRate(double discountRate)throws IllegalArgumentException {
+        if(discountRate < 0 || discountRate > 5){
+            throw new IllegalArgumentException("Sory");
+        }
+        
         this.discountRate = discountRate;
     }
     

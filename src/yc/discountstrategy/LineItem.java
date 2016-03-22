@@ -24,9 +24,11 @@ public class LineItem {
     public final Product getProduct() {
         return product;
     }
-
+    //Product not be null or empty
+    //Product must be greater than zero
     public final void setProduct(Product product) {
-        //Need validation
+        if (product == null || product.length() < 0)
+        
         this.product = product;
     }
 
