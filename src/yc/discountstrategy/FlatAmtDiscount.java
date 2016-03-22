@@ -21,7 +21,7 @@ public class FlatAmtDiscount implements DiscountStrategy{
     //QTY and UnitCost can't be less than zero
     @Override
     public final double getDiscountAmt(int qty, double unitCost) throws IllegalArgumentException{
-        if (qty,unitCost < 0 ){
+        if (qty < 0 ){
         throw new IllegalArgumentException("Sorry qty must be greater than zero");
     }
         

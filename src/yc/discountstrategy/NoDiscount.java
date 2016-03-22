@@ -32,7 +32,10 @@ public class NoDiscount implements DiscountStrategy{
     }
 
     public final void setDiscountRate(double discountRate) {
-        //needs validation
+       if(discountRate < NO_DISCOUNT){
+           throw new IllegalArgumentException("Sorry the "+ 
+                   "discount rate not less than No discount rate.");
+       }
         this.discountRate = discountRate;
     }
 

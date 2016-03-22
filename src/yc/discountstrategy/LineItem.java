@@ -27,7 +27,7 @@ public class LineItem {
     //Product not be null or empty
     //Product must be greater than zero
     public final void setProduct(Product product) {
-        if (product == null || product.length() < 0)
+       
         
         this.product = product;
     }
