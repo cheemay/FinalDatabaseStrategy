@@ -27,9 +27,13 @@ public class Product {
     public String getProdId() {
         return prodId;
     }
-
-    public final void setProdId(String prodId) {
-        //Needs validation
+    //ProdId can't be null or empty
+    //ProdId must be between 2 and 6 words or number
+    public final void setProdId(String prodId) throws IllegalArgumentException{
+        if(prodId == null || prodId.isEmpty() || 
+                 prodId.length() < 2 || prodId.length() > 6){
+        throw new IllegalArgumentException("Sorry the prodId not be null or empty");
+    }
         this.prodId = prodId;
     }
 
