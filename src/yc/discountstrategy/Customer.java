@@ -31,8 +31,8 @@ public class Customer {
     public final void setCustId(String custId) throws IllegalArgumentException {
         if(custId == null || custId.isEmpty() || custId.length() < MIN_WORD_COUNT || 
                 custId.length() > MAX_WORD_COUNT){
-            throw new IllegalArgumentException
-        ("The customer id must have value between 2 to 7 words");
+            throw new NullOrEmptyArgumentException();
+        
         }
         this.custId = custId;
     }
@@ -45,7 +45,7 @@ public class Customer {
     public final void setCustName(String custName) throws IllegalArgumentException{
         if (custName == null || custName.isEmpty() ||
                 custName.length() < MIN_WORD_COUNT || custName.length() > MAX_WORD_COUNT){
-            throw new IllegalArgumentException("Sorry");
+            throw new NullOrEmptyArgumentException();
         }
         this.custName = custName;
     }

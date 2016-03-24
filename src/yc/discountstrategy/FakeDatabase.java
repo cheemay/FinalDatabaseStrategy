@@ -40,7 +40,7 @@ public class FakeDatabase implements DatabaseStrategy {
     }
     @Override
     public final Customer findCustomrById(String custId){
-        //Needs validation
+        
         Customer customer = null;
         for  (Customer c : customers) {
             if(c.getCustId().equals(custId)){

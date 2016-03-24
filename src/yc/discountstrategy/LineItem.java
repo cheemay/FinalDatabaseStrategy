@@ -12,6 +12,7 @@ package yc.discountstrategy;
 public class LineItem {
     private Product product;
     private int qty;
+    private static final int MIN_QTY = 0;
 
     public LineItem(String prodId, int qty,DatabaseStrategy db) {
         
@@ -35,9 +36,11 @@ public class LineItem {
     public final int getQty() {
         return qty;
     }
-
-    public final void setQty(int qty) {
-        //Need validation
+    //qty is not less than zero
+    public final void setQty(int qty) throws IllegalArgumentException{
+        if (qty > MIN_QTY){
+            throw new QtyRangeException();
+        }
         this.qty = qty;
     }
     

@@ -12,7 +12,10 @@ package yc.discountstrategy;
 public class NoDiscount implements DiscountStrategy{
     private double discountRate;
     
-    private final int NO_DISCOUNT = 0;
+    private static final int NO_DISCOUNT = 0;
+    private static final int MIN_QTY = 0;
+    private static final double MIN_DIS_RATE = 0;
+    private static final double MIN_UNITCOST = 0;
 
     public NoDiscount() {
        
@@ -20,9 +23,10 @@ public class NoDiscount implements DiscountStrategy{
     
 
     @Override
-    public final double getDiscountAmt(int qty, double unitCost) {
-        //needs validation
-        
+    public final double getDiscountAmt(int qty, double unitCost) throws IllegalArgumentException{
+        if(qty > MIN_QTY || unitCost > MIN_UNITCOST ){
+            throw new QtyRangeException();
+        }
         return NO_DISCOUNT;
         
      }
@@ -31,10 +35,9 @@ public class NoDiscount implements DiscountStrategy{
         return discountRate;
     }
 
-    public final void setDiscountRate(double discountRate) {
+    public final void setDiscountRate(double discountRate) throws IllegalArgumentException {
        if(discountRate < NO_DISCOUNT){
-           throw new IllegalArgumentException("Sorry the "+ 
-                   "discount rate not less than No discount rate.");
+           throw new QtyRangeException();
        }
         this.discountRate = discountRate;
     }
