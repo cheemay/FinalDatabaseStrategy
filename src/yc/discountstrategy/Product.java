@@ -14,6 +14,9 @@ public class Product {
     private String prodName;
     private double unitCost;
     private DiscountStrategy discount;
+    private static final int MIN_PRODNAME = 3;
+    private static final int MAX_PRODNAME = 15;
+    private static final double MIN_DISCOUNT = 0.1;
 
     public Product(String prodId, String prodName, double unitCost, DiscountStrategy discount) {
         setProdId(prodId);
@@ -32,7 +35,7 @@ public class Product {
     public final void setProdId(String prodId) throws IllegalArgumentException{
         if(prodId == null || prodId.isEmpty() || 
                  prodId.length() < 2 || prodId.length() > 6){
-        throw new IllegalArgumentException("Sorry the prodId not be null or empty");
+        throw new NullOrEmptyArgumentException();
     }
         this.prodId = prodId;
     }
@@ -41,8 +44,11 @@ public class Product {
         return prodName;
     }
 
-    public final void setProdName(String prodName) {
-        //Needs validation
+    public final void setProdName(String prodName) throws IllegalArgumentException{
+        if (prodName == null || prodName.isEmpty() || prodName.length() < MIN_PRODNAME 
+                || prodName.length() > MAX_PRODNAME){
+            throw new NullOrEmptyArgumentException();
+        }
         this.prodName = prodName;
     }
 
@@ -60,7 +66,7 @@ public class Product {
     }
 
     public final void setDiscount(DiscountStrategy discount) {
-        //Needs validation
+        
         this.discount = discount;
     }
     

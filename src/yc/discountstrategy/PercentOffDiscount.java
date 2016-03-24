@@ -11,6 +11,10 @@ package yc.discountstrategy;
  */
 public class PercentOffDiscount implements DiscountStrategy{
     private double discountRate;
+    private final int MIN_QTY = 1;
+    private final double MIN_UNITCOST = 0;
+    private final double MIN_DISCOUNT = 0;
+    private final double MAX_DISCOUNT = 75;
 
     public PercentOffDiscount(double discountRate) {
         //we can do this way but we need validations so use setter and make them a final 
@@ -20,8 +24,10 @@ public class PercentOffDiscount implements DiscountStrategy{
     
 
     @Override
-    public final double getDiscountAmt(int qty, double unitCost) {
-        //needs validation
+    public final double getDiscountAmt(int qty, double unitCost)throws IllegalArgumentException {
+        if (qty > MIN_QTY || unitCost > MIN_UNITCOST ){
+            throw new QtyRangeException();
+        }
         return unitCost * qty * discountRate;
         
      }
@@ -30,8 +36,9 @@ public class PercentOffDiscount implements DiscountStrategy{
         return discountRate;
     }
 
-    public final void setDiscountRate(double discountRate) {
-        //needs validation
+    public final void setDiscountRate(double discountRate) throws IllegalArgumentException{
+        if(discountRate > MIN_DISCOUNT || discountRate < MAX_DISCOUNT)
+            throw new IllegalArgumentException("Sorry discount value is between 0 and 75");
         this.discountRate = discountRate;
     }
     

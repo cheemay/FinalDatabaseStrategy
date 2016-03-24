@@ -39,9 +39,11 @@ public class FakeDatabase implements DatabaseStrategy {
     
     }
     @Override
-    public final Customer findCustomrById(String custId){
+    public final Customer findCustomrById(String custId)throws IllegalArgumentException{
         
         Customer customer = null;
+        if(custId == null || custId.isEmpty() || custId.length() < 2)
+            throw new IllegalArgumentException("Sorry wrong custid value");
         for  (Customer c : customers) {
             if(c.getCustId().equals(custId)){
                 customer = c;
